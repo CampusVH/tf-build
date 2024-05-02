@@ -35,6 +35,9 @@ TF
 echo -e "\e[0;33m"
 
 if [[ $EUID -eq 0 ]]; then
+  # Fix CUDA loading for running nvidia-smi
+  ldconfig
+
   cat <<WARN
 WARNING: You are running this container as root, which can cause new files in
 mounted volumes to be created as the root user on your host machine.
@@ -53,5 +56,3 @@ fi
 # Turn off colors
 echo -e "\e[m"
 
-# Fix CUDA loading for running nvidia-smi
-ldconfig
